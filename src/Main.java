@@ -1,12 +1,13 @@
 public class Main {
     public static void main(String[] args) {
-        // Usando o novo sistema diretamente
-        NovoSistemaPagamento novoSistema = new NovoSistemaPagamentoImpl();
-        novoSistema.processarPagamento(100.0);
 
-        // Usando o sistema antigo com o Adapter
+        // Instâncias das classes
+        NovoSistemaPagamento novoSistema = new NovoSistemaPagamentoImpl();
         SistemaAntigoPagamento sistemaAntigo = new SistemaAntigoPagamento();
         NovoSistemaPagamento adapter = new AdapterSistemaPagamento(sistemaAntigo);
-        adapter.processarPagamento(200.0);
+
+        // Instância do menu de opções
+        Menu menu = new Menu(novoSistema, adapter);
+        menu.exibirMenu();
     }
 }
