@@ -1,13 +1,18 @@
 public class Main {
     public static void main(String[] args) {
 
-        // Instâncias das classes
+        // Instâncias dos sistemas de pagamento
         NovoSistemaPagamento novoSistema = new NovoSistemaPagamentoImpl();
         SistemaAntigoPagamento sistemaAntigo = new SistemaAntigoPagamento();
         NovoSistemaPagamento adapter = new AdapterSistemaPagamento(sistemaAntigo);
 
-        // Instância do menu de opções
-        Menu menu = new Menu(novoSistema, adapter);
+        // Classes com os métodos de apoio
+        ValidarValor validadorDeValor = new ValidarValor();
+        EscolherSistema escolhaSistemaPagamento = new EscolherSistema();
+        ProcessarPagamento processadorPagamento = new ProcessarPagamento(novoSistema, adapter);
+
+        // Exibe o menu de opções
+        Menu menu = new Menu(validadorDeValor, escolhaSistemaPagamento, processadorPagamento);
         menu.exibirMenu();
     }
 }
